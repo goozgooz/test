@@ -22,10 +22,7 @@ class Container extends React.Component{
     this.addInput = this.addInput.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.removeInput = this.removeInput.bind(this);
-  }
-  
-  componentDidUpdate(){
-    console.log('__STATE__', this.state.keyValArray);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   addInput(){
@@ -50,6 +47,12 @@ class Container extends React.Component{
       keyValArray: keyValArray.filter(item => item.id !== id),
     }));
   }
+  
+  handleSubmit(){
+    this.state.keyValArray.map(item => {
+      console.log(JSON.stringify({[item.key]: item.value}));
+    });
+  }
 
 
 
@@ -69,7 +72,8 @@ class Container extends React.Component{
             key={i}
           />
         ))}
-
+        
+        <button onClick={this.handleSubmit}> Submit </button>
       </div>
     );
   }
