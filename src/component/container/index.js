@@ -45,8 +45,10 @@ class Container extends React.Component{
     }));
   }
   
-  removeInput(){
-    console.log('removing');
+  removeInput(id){
+    this.setState(({keyValArray}) => ({
+      keyValArray: keyValArray.filter(item => item.id !== id),
+    }));
   }
 
 

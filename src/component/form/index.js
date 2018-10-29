@@ -3,10 +3,25 @@ import React from 'react';
 class Form extends React.Component {
   constructor(props){
     super(props);
-
-    this.state = this.props.data;
+    
+    this.state = {
+      id: null,
+      key: '',
+      value: '',
+    };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
+  }
+  
+  static getDerivedStateFromProps(props, state){
+    if(props.data !== state){
+      return {
+        id: props.data.id,
+        key: props.data.key,
+        value: props.data.value,
+      };
+    }
   }
   
   handleChange(e){
@@ -19,6 +34,10 @@ class Form extends React.Component {
       [name]: value,
       id: this.state.id,
     });
+  }
+  
+  handleRemove(){
+    this.props.removeInput(this.state.id);
   }
 
   render(){
@@ -41,6 +60,7 @@ class Form extends React.Component {
           />
         </form>
         
+        <button onClick={this.handleRemove}> X </button>
       </div>
     );
   }
