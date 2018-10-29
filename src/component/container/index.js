@@ -6,11 +6,9 @@ import uuid from 'uuid/v4';
 
 const initialPair = {
   id: uuid(),
-  key: 'yes',
-  value: 'poop',
+  key: '',
+  value: '',
 };
-
-
 
 class Container extends React.Component{
   constructor(props){
@@ -32,6 +30,7 @@ class Container extends React.Component{
       key: '',
       value: '',
     };
+    
     this.setState(prevState => ({
       keyValArray: [...prevState.keyValArray, newPair],
     }));
@@ -54,19 +53,9 @@ class Container extends React.Component{
       console.log(JSON.stringify({[item.key]: item.value}));
     });
   }
-
-
-        // {keyValArray.map((item,i) => (
-        //   <Form 
-        //     data={item}
-        //     updateInput={this.updateInput}
-        //     removeInput={this.removeInput}
-        //     key={i}
-        //   />
-        // ))}
-
+  
   render(){
-    let {keyValArray} = this.state;
+    const {keyValArray} = this.state;
 
     return(
       <div className='container'>
