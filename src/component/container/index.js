@@ -1,5 +1,6 @@
 import React from 'react';
-import Form from '../form';
+// import Form from '../form';
+import Display from '../form';
 
 import uuid from 'uuid/v4';
 
@@ -55,6 +56,14 @@ class Container extends React.Component{
   }
 
 
+        // {keyValArray.map((item,i) => (
+        //   <Form 
+        //     data={item}
+        //     updateInput={this.updateInput}
+        //     removeInput={this.removeInput}
+        //     key={i}
+        //   />
+        // ))}
 
   render(){
     let {keyValArray} = this.state;
@@ -64,14 +73,11 @@ class Container extends React.Component{
         <h1> This is the Containter </h1>
         <div onClick={this.addInput}> + </div>
         
-        {keyValArray.map((item,i) => (
-          <Form 
-            data={item}
-            updateInput={this.updateInput}
-            removeInput={this.removeInput}
-            key={i}
-          />
-        ))}
+        <Display 
+          array={keyValArray}
+          updateInput={this.updateInput}
+          removeInput={this.removeInput}
+        />
         
         <button onClick={this.handleSubmit}> Submit </button>
       </div>
