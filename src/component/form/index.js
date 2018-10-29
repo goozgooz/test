@@ -7,29 +7,23 @@ class Form extends React.Component {
     this.state = this.props.data;
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
   
-  componentDidMount(){
-    console.log(this.state);
-  }
-  
-  handleBlur(){
-    console.log('pre', this.state);
-    this.props.updateInput(this.state);
-  }
-
   handleChange(e){
     let {name, value} = e.target;
     this.setState({
       [name]: value,
     });
+    
+    this.props.updateInput({
+      [name]: value,
+      id: this.state.id,
+    });
   }
 
   render(){
-    // console.log('form id', this.props.id);
     return(
-      <div onBlur={this.handleBlur}>
+      <div>
         <form>
           <input
             type='text'
@@ -46,6 +40,7 @@ class Form extends React.Component {
             value={this.state.value}
           />
         </form>
+        
       </div>
     );
   }

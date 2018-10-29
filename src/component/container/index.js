@@ -19,8 +19,9 @@ class Container extends React.Component{
       keyValArray: [initialPair],
     };
 
-    this.updateInput = this.updateInput.bind(this);
     this.addInput = this.addInput.bind(this);
+    this.updateInput = this.updateInput.bind(this);
+    this.removeInput = this.removeInput.bind(this);
   }
   
   componentDidUpdate(){
@@ -39,14 +40,20 @@ class Container extends React.Component{
   }
   
   updateInput(input){
-    console.log(input);
+    this.setState(({keyValArray}) => ({
+      keyValArray: keyValArray.map(item => item.id === input.id ? {...item, ...input} : item),
+    }));
+  }
+  
+  removeInput(){
+    console.log('removing');
   }
 
 
 
   render(){
     let {keyValArray} = this.state;
-    // console.log(keyValArray[0]);
+
     return(
       <div className='container'>
         <h1> This is the Containter </h1>
@@ -56,6 +63,7 @@ class Container extends React.Component{
           <Form 
             data={item}
             updateInput={this.updateInput}
+            removeInput={this.removeInput}
             key={i}
           />
         ))}
